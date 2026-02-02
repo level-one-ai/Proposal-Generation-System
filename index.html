@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level One - Proposal Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="generator-styles.css">
+</head>
+<body>
+    <div class="generator-container">
+        <!-- Header -->
+        <div class="generator-header">
+            <div class="logo-section">
+                <img src="https://github.com/level-one-ai/Proposal-System/blob/main/Whisk_cc3ea92b36cae7aaaf5425d64468a20ceg.png?raw=true" alt="Level One Logo" class="logo-image">
+                <img src="https://github.com/level-one-ai/Proposal-System/blob/main/Screenshot%202026-01-29%2020.36.28.png?raw=true" alt="Level One Text" class="logo-text">
+            </div>
+            <div class="header-title">Proposal Generator</div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Step 1 of 7</div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="form-wrapper">
+            <form id="proposalForm">
+                
+                <!-- Page 1: Client Information -->
+                <div class="form-page active" data-page="1">
+                    <div class="page-hero">
+                        <img src="https://github.com/level-one-ai/Proposal-System/blob/main/processed-image.png?raw=true" alt="Hero Background" class="page-hero-image">
+                        <div class="page-hero-overlay">
+                            <h2 class="page-title">Client Information</h2>
+                            <p class="page-subtitle">Let's start with the basics about your client</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-content">
+                        <div class="form-group">
+                            <label for="companyName">Company Name *</label>
+                            <input type="text" id="companyName" name="companyName" required placeholder="Enter company name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="clientName">Client Contact Name *</label>
+                            <input type="text" id="clientName" name="clientName" required placeholder="Enter client's first name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="proposalTitlePrefix">Proposal Title Prefix *</label>
+                            <input type="text" id="proposalTitlePrefix" name="proposalTitlePrefix" required placeholder="e.g., E-Commerce Platform & Automation System for">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="proposalSubtitle">Proposal Subtitle</label>
+                            <textarea id="proposalSubtitle" name="proposalSubtitle" rows="3" placeholder="Brief description of what this proposal covers"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 2: Client Problems (Brief) -->
+                <div class="form-page" data-page="2">
+                    <h2 class="page-title">Client Challenges</h2>
+                    <p class="page-subtitle">List 4 key problems the client is facing (brief summaries)</p>
+                    
+                    <div class="form-content">
+                        <div class="form-group">
+                            <label for="problem1">Challenge 1 *</label>
+                            <textarea id="problem1" name="problem1" rows="2" required placeholder="Brief description of first challenge"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="problem2">Challenge 2 *</label>
+                            <textarea id="problem2" name="problem2" rows="2" required placeholder="Brief description of second challenge"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="problem3">Challenge 3 *</label>
+                            <textarea id="problem3" name="problem3" rows="2" required placeholder="Brief description of third challenge"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="problem4">Challenge 4 *</label>
+                            <textarea id="problem4" name="problem4" rows="2" required placeholder="Brief description of fourth challenge"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 3: Detailed Problems -->
+                <div class="form-page" data-page="3">
+                    <h2 class="page-title">Detailed Problem Analysis</h2>
+                    <p class="page-subtitle">Provide context for the AI to expand on these problems</p>
+                    
+                    <div class="form-content">
+                        <div class="problem-detail-group">
+                            <div class="form-group">
+                                <label for="detailProblem1Title">Problem 1 Title *</label>
+                                <input type="text" id="detailProblem1Title" name="detailProblem1Title" required placeholder="e.g., Manual Content Creation Bottleneck">
+                            </div>
+                            <div class="form-group">
+                                <label for="detailProblem1Context">Problem 1 Context *</label>
+                                <textarea id="detailProblem1Context" name="detailProblem1Context" rows="2" required placeholder="Provide context for AI to write detailed description"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="problem-detail-group">
+                            <div class="form-group">
+                                <label for="detailProblem2Title">Problem 2 Title *</label>
+                                <input type="text" id="detailProblem2Title" name="detailProblem2Title" required placeholder="e.g., Fraud Vulnerability">
+                            </div>
+                            <div class="form-group">
+                                <label for="detailProblem2Context">Problem 2 Context *</label>
+                                <textarea id="detailProblem2Context" name="detailProblem2Context" rows="2" required placeholder="Provide context for AI to write detailed description"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="problem-detail-group">
+                            <div class="form-group">
+                                <label for="detailProblem3Title">Problem 3 Title *</label>
+                                <input type="text" id="detailProblem3Title" name="detailProblem3Title" required placeholder="e.g., Support Team Overload">
+                            </div>
+                            <div class="form-group">
+                                <label for="detailProblem3Context">Problem 3 Context *</label>
+                                <textarea id="detailProblem3Context" name="detailProblem3Context" rows="2" required placeholder="Provide context for AI to write detailed description"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="problem-detail-group">
+                            <div class="form-group">
+                                <label for="detailProblem4Title">Problem 4 Title *</label>
+                                <input type="text" id="detailProblem4Title" name="detailProblem4Title" required placeholder="e.g., Missed Personalization Opportunities">
+                            </div>
+                            <div class="form-group">
+                                <label for="detailProblem4Context">Problem 4 Context *</label>
+                                <textarea id="detailProblem4Context" name="detailProblem4Context" rows="2" required placeholder="Provide context for AI to write detailed description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 4: Solutions -->
+                <div class="form-page" data-page="4">
+                    <h2 class="page-title">Proposed Solutions</h2>
+                    <p class="page-subtitle">Define the solutions you'll provide (AI will expand these)</p>
+                    
+                    <div class="form-content scrollable">
+                        <div class="solution-group">
+                            <div class="form-group">
+                                <label for="solution0Title">Solution 1 Title *</label>
+                                <input type="text" id="solution0Title" name="solution0Title" required placeholder="e.g., Custom E-Commerce Platform">
+                            </div>
+                            <div class="form-group">
+                                <label for="solution0Context">Solution 1 Context *</label>
+                                <textarea id="solution0Context" name="solution0Context" rows="2" required placeholder="Brief context for AI to expand"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="solution-group">
+                            <div class="form-group">
+                                <label for="solution1Title">Solution 2 Title *</label>
+                                <input type="text" id="solution1Title" name="solution1Title" required placeholder="e.g., AI-Powered Content Engine">
+                            </div>
+                            <div class="form-group">
+                                <label for="solution1Context">Solution 2 Context *</label>
+                                <textarea id="solution1Context" name="solution1Context" rows="2" required placeholder="Brief context for AI to expand"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="solution-group">
+                            <div class="form-group">
+                                <label for="solution2Title">Solution 3 Title *</label>
+                                <input type="text" id="solution2Title" name="solution2Title" required placeholder="e.g., Intelligent Fraud Prevention">
+                            </div>
+                            <div class="form-group">
+                                <label for="solution2Context">Solution 3 Context *</label>
+                                <textarea id="solution2Context" name="solution2Context" rows="2" required placeholder="Brief context for AI to expand"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="solution-group">
+                            <div class="form-group">
+                                <label for="solution3Title">Solution 4 Title *</label>
+                                <input type="text" id="solution3Title" name="solution3Title" required placeholder="e.g., 24/7 AI Support Agent">
+                            </div>
+                            <div class="form-group">
+                                <label for="solution3Context">Solution 3 Context *</label>
+                                <textarea id="solution3Context" name="solution3Context" rows="2" required placeholder="Brief context for AI to expand"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="solution-group">
+                            <div class="form-group">
+                                <label for="solution4Title">Solution 5 Title</label>
+                                <input type="text" id="solution4Title" name="solution4Title" placeholder="e.g., Predictive Personalization">
+                            </div>
+                            <div class="form-group">
+                                <label for="solution4Context">Solution 5 Context</label>
+                                <textarea id="solution4Context" name="solution4Context" rows="2" placeholder="Brief context for AI to expand"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="solution-group">
+                            <div class="form-group">
+                                <label for="solution5Title">Solution 6 Title</label>
+                                <input type="text" id="solution5Title" name="solution5Title" placeholder="e.g., Visual Search & Dynamic Pricing">
+                            </div>
+                            <div class="form-group">
+                                <label for="solution5Context">Solution 6 Context</label>
+                                <textarea id="solution5Context" name="solution5Context" rows="2" placeholder="Brief context for AI to expand"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 5: Timeline & Milestones -->
+                <div class="form-page" data-page="5">
+                    <h2 class="page-title">Project Timeline</h2>
+                    <p class="page-subtitle">Define your 6 milestones (AI will generate tasks)</p>
+                    
+                    <div class="form-content scrollable">
+                        <div class="milestone-group">
+                            <h3 class="milestone-header">Milestone 1</h3>
+                            <div class="form-group">
+                                <label for="milestone1Title">Title *</label>
+                                <input type="text" id="milestone1Title" name="milestone1Title" required placeholder="e.g., Core Foundation & Content Automation">
+                            </div>
+                            <div class="form-group">
+                                <label for="milestone1Date">Timeline *</label>
+                                <input type="text" id="milestone1Date" name="milestone1Date" required placeholder="e.g., Weeks 1-3 • May 2026">
+                            </div>
+                            <div class="form-group">
+                                <label for="milestone1Context">Context for AI *</label>
+                                <textarea id="milestone1Context" name="milestone1Context" rows="2" required placeholder="What happens in this phase? AI will generate description and tasks"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="milestone-group">
+                            <h3 class="milestone-header">Milestone 2</h3>
+                            <div class="form-group">
+                                <label for="milestone2Title">Title *</label>
+                                <input type="text" id="milestone2Title" name="milestone2Title" required placeholder="e.g., Transactional MVP & Security">
+                            </div>
+                            <div class="form-group">
+                                <label for="milestone2Date">Timeline *</label>
+                                <input type="text" id="milestone2Date" name="milestone2Date" required placeholder="e.g., Weeks 4-6 • May-June 2026">
+                            </div>
+                            <div class="form-group">
+                                <label for="milestone2Context">Context for AI *</label>
+                                <textarea id="milestone2Context" name="milestone2Context" rows="2" required placeholder="What happens in this phase?"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="milestone-group">
+                            <h3 class="milestone-header">Milestone 3</h3>
+                            <div class="form-group">
+                                <label for="milestone3Title">Title *</label>
+                                <input type="text" id="milestone3Title" name="milestone3Title" required placeholder="e.g., Support Automation & CX">
+                            </div>
+                            <div class="form-group">
+                                <label for="milestone3Date">Timeline *</label>
+                                <input type="text" id="milestone3Date" name="milestone3Date" required placeholder="e.g., Weeks 7-9 • June 2026">
+                            </div>
+                            <div class="form-group">
+                                <label for="milestone3Context">Context for AI *</label>
+                                <textarea id="milestone3Context" name="milestone3Context" rows="2" required placeholder="What happens in this phase?"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="milestone-group">
+                            <h3 class="milestone-header">Milestone 4</h3>
+                            <div class="form-group">
+                                <label for="milestone4Title">Title *</label>
+                                <input type="text" id="milestone4Title" name="milestone4Title" required placeholder="e.g., Personalisation & Predictive Ops">
+                            </div>
+                            <div class="form-group">
+                                <label for="milestone4Date">Timeline *</label>
+                                <input type="text" id="milestone4Date" name="milestone4Date" required placeholder="e.g., Weeks 10-12 • June-July 2026">
+                            </div>
+                            <div class="form-group">
+                                <label for="milestone4Context">Context for AI *</label>
+                                <textarea id="milestone4Context" name="milestone4Context" rows="2" required placeholder="What happens in this phase?"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="milestone-group">
+                            <h3 class="milestone-header">Milestone 5</h3>
+                            <div class="form-group">
+                                <label for="milestone5Title">Title *</label>
+                                <input type="text" id="milestone5Title" name="milestone5Title" required placeholder="e.g., Advanced Discovery & Growth">
+                            </div>
+                            <div class="form-group">
+                                <label for="milestone5Date">Timeline *</label>
+                                <input type="text" id="milestone5Date" name="milestone5Date" required placeholder="e.g., Weeks 13-15 • July 2026">
+                            </div>
+                            <div class="form-group">
+                                <label for="milestone5Context">Context for AI *</label>
+                                <textarea id="milestone5Context" name="milestone5Context" rows="2" required placeholder="What happens in this phase?"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="milestone-group">
+                            <h3 class="milestone-header">Milestone 6</h3>
+                            <div class="form-group">
+                                <label for="milestone6Title">Title *</label>
+                                <input type="text" id="milestone6Title" name="milestone6Title" required placeholder="e.g., Launch & Handover">
+                            </div>
+                            <div class="form-group">
+                                <label for="milestone6Date">Timeline *</label>
+                                <input type="text" id="milestone6Date" name="milestone6Date" required placeholder="e.g., Week 16 • July-August 2026">
+                            </div>
+                            <div class="form-group">
+                                <label for="milestone6Context">Context for AI *</label>
+                                <textarea id="milestone6Context" name="milestone6Context" rows="2" required placeholder="What happens in this phase?"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 6: Investment Details -->
+                <div class="form-page" data-page="6">
+                    <h2 class="page-title">Investment Breakdown</h2>
+                    <p class="page-subtitle">Define the pricing structure</p>
+                    
+                    <div class="form-content scrollable">
+                        <div class="investment-section-form">
+                            <h3 class="section-header">Deposit</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="depositPercentage">Percentage *</label>
+                                    <input type="text" id="depositPercentage" name="depositPercentage" required placeholder="e.g., 50%">
+                                </div>
+                                <div class="form-group">
+                                    <label for="depositAmount">Amount *</label>
+                                    <input type="text" id="depositAmount" name="depositAmount" required placeholder="e.g., £9,370">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="depositCoversTitle">Covers Text *</label>
+                                <input type="text" id="depositCoversTitle" name="depositCoversTitle" required placeholder="e.g., This covers Milestones 1 & 2:">
+                            </div>
+                            <div class="form-group">
+                                <label for="depositIncludes">What's Included (separate with |) *</label>
+                                <textarea id="depositIncludes" name="depositIncludes" rows="3" required placeholder="Item 1|Item 2|Item 3|Item 4|Item 5"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="investment-section-form">
+                            <h3 class="section-header">Remaining Balance</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="remainingPercentage">Percentage *</label>
+                                    <input type="text" id="remainingPercentage" name="remainingPercentage" required placeholder="e.g., 50%">
+                                </div>
+                                <div class="form-group">
+                                    <label for="remainingAmount">Amount *</label>
+                                    <input type="text" id="remainingAmount" name="remainingAmount" required placeholder="e.g., £9,370">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="remainingCoversTitle">Covers Text *</label>
+                                <input type="text" id="remainingCoversTitle" name="remainingCoversTitle" required placeholder="e.g., This covers Milestones 3, 4, 5 & 6:">
+                            </div>
+                            <div class="form-group">
+                                <label for="remainingIncludes">What's Included (separate with |) *</label>
+                                <textarea id="remainingIncludes" name="remainingIncludes" rows="3" required placeholder="Item 1|Item 2|Item 3|Item 4"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="investment-section-form">
+                            <h3 class="section-header">Milestone Payments</h3>
+                            <div class="form-group">
+                                <label for="milestone3Payment">Milestone 3 Label *</label>
+                                <input type="text" id="milestone3Payment" name="milestone3Payment" required placeholder="e.g., Milestone 3 — Support & CX">
+                            </div>
+                            <div class="form-group">
+                                <label for="milestone3Amount">Milestone 3 Amount *</label>
+                                <input type="text" id="milestone3Amount" name="milestone3Amount" required placeholder="e.g., £3,748">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="milestone4Payment">Milestone 4 Label *</label>
+                                <input type="text" id="milestone4Payment" name="milestone4Payment" required placeholder="e.g., Milestone 4 — Personalisation">
+                            </div>
+                            <div class="form-group">
+                                <label for="milestone4Amount">Milestone 4 Amount *</label>
+                                <input type="text" id="milestone4Amount" name="milestone4Amount" required placeholder="e.g., £2,811">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="milestone56Payment">Milestones 5 & 6 Label *</label>
+                                <input type="text" id="milestone56Payment" name="milestone56Payment" required placeholder="e.g., Milestones 5 & 6 — Launch">
+                            </div>
+                            <div class="form-group">
+                                <label for="milestone56Amount">Milestones 5 & 6 Amount *</label>
+                                <input type="text" id="milestone56Amount" name="milestone56Amount" required placeholder="e.g., £2,811">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="projectTotal">Project Total *</label>
+                            <input type="text" id="projectTotal" name="projectTotal" required placeholder="e.g., £18,740">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 7: Make.com Webhook -->
+                <div class="form-page" data-page="7">
+                    <h2 class="page-title">Configuration</h2>
+                    <p class="page-subtitle">Final settings before generation</p>
+                    
+                    <div class="form-content">
+                        <div class="form-group">
+                            <label for="webhookUrl">Make.com Webhook URL *</label>
+                            <input type="url" id="webhookUrl" name="webhookUrl" required placeholder="https://hook.us1.make.com/...">
+                            <span class="field-hint">This is where the form data will be sent for AI processing</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="platform1Name">Platform Fee 1 Name</label>
+                            <input type="text" id="platform1Name" name="platform1Name" placeholder="e.g., Make.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="platform1Price">Platform Fee 1 Price</label>
+                            <input type="text" id="platform1Price" name="platform1Price" placeholder="e.g., £25/mo">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="platform2Name">Platform Fee 2 Name</label>
+                            <input type="text" id="platform2Name" name="platform2Name" placeholder="e.g., AI API Usage (est.)">
+                        </div>
+                        <div class="form-group">
+                            <label for="platform2Price">Platform Fee 2 Price</label>
+                            <input type="text" id="platform2Price" name="platform2Price" placeholder="e.g., £50-150/mo">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="paymentStructure">Payment Structure Note</label>
+                            <textarea id="paymentStructure" name="paymentStructure" rows="2" placeholder="Brief note about payment structure"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="milestoneSignoff">Milestone Sign-off Note</label>
+                            <textarea id="milestoneSignoff" name="milestoneSignoff" rows="2" placeholder="Brief note about milestone approval process"></textarea>
+                        </div>
+
+                        <div class="submit-section">
+                            <button type="submit" class="btn-submit" id="submitBtn">
+                                <span class="btn-text">Generate Proposal</span>
+                                <span class="btn-loader" style="display: none;">
+                                    <span class="loader"></span> Processing...
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <button type="button" class="nav-btn nav-prev" id="prevBtn" disabled>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Previous
+            </button>
+            <button type="button" class="nav-btn nav-next" id="nextBtn">
+                Next
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon">✓</div>
+            <h2 class="success-title">Proposal Generated!</h2>
+            <p class="success-message">Your proposal has been sent to Make.com for AI processing. You'll receive the completed proposal link via email shortly.</p>
+            <div class="success-actions">
+                <button class="btn-close-modal" onclick="closeSuccessModal()">Create Another Proposal</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="generator-script.js"></script>
+</body>
+</html>
