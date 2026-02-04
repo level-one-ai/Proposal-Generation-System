@@ -15,138 +15,36 @@
         :root {
             --primary-orange: #e67e22;
             --primary-orange-dark: #d35400;
-            --primary-orange-glow: rgba(230, 126, 34, 0.6);
-            --dark-bg: #0a0a0a;
-            --card-bg: #141414;
-            --text-light: #ffffff;
-            --text-muted: #a0a0a0;
-            --border-light: #333;
-            --accent-blue: #3498db;
+            --black-bg: #000000;
+            --white-text: #ffffff;
         }
 
         body {
             font-family: 'Source Sans Pro', sans-serif;
-            background: #f5f5f5;
-            color: #333;
+            background: var(--black-bg);
+            color: var(--white-text);
             min-height: 100vh;
-            padding: 20px;
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .generator-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 0;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        /* Header */
-        .generator-header {
-            background: url('https://github.com/level-one-ai/Proposal-System/blob/main/processed-image.png?raw=true') center center / cover no-repeat;
-            padding: 50px 55px;
-            position: relative;
-            border-bottom: none;
-        }
-
-        .generator-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%);
-            z-index: 1;
-        }
-
-        .logo-section {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .logo-image {
-            height: 90px;
-            width: auto;
-            display: block;
-        }
-
-        .logo-text {
-            height: 30px;
-            width: auto;
-            display: block;
-        }
-
-        .header-title {
-            position: relative;
-            z-index: 2;
-            font-family: 'Playfair Display', serif;
-            font-size: 42px;
-            font-weight: 700;
-            color: var(--text-light);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Progress Bar */
-        .progress-container {
-            background: #fafafa;
-            padding: 20px 55px;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 6px;
-            background: #e5e5e5;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-orange) 0%, var(--primary-orange-dark) 100%);
-            border-radius: 10px;
-            width: 25%;
-            transition: width 0.4s ease;
-            box-shadow: 0 0 10px rgba(230, 126, 34, 0.3);
-        }
-
-        .progress-text {
-            font-size: 11px;
-            color: #666;
-            text-align: center;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Form Wrapper */
-        .form-wrapper {
-            padding: 50px 55px;
-            min-height: 500px;
-            position: relative;
-            background: white;
-        }
-
-        .form-page {
+        .page-container {
+            min-height: 100vh;
             display: none;
-            animation: fadeIn 0.4s ease;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            animation: fadeIn 0.5s ease;
         }
 
-        .form-page.active {
-            display: block;
+        .page-container.active {
+            display: flex;
         }
 
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -154,315 +52,160 @@
             }
         }
 
-        /* Page Hero (for first page) */
-        .page-hero {
+        /* Page 1 - Welcome Screen */
+        .welcome-page {
+            background: url('https://github.com/level-one-ai/Proposal-System/blob/main/processed-image.png?raw=true') center center / cover no-repeat;
             position: relative;
-            height: 200px;
-            border-radius: 0;
-            overflow: hidden;
-            margin-bottom: 30px;
-            box-shadow: none;
         }
 
-        .page-hero-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .page-hero-overlay {
+        .welcome-page::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.8) 100%);
+            z-index: 1;
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 2;
             text-align: center;
-            padding: 20px;
+            max-width: 800px;
         }
 
-        .page-hero-overlay .page-title {
-            color: var(--text-light);
-            margin-bottom: 10px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
         }
 
-        .page-hero-overlay .page-subtitle {
-            color: rgba(255, 255, 255, 0.85);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        .logo-image {
+            height: 120px;
+            width: auto;
         }
 
-        /* Page Titles */
+        .logo-text {
+            height: 40px;
+            width: auto;
+        }
+
+        .welcome-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--white-text);
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            margin-bottom: 30px;
+        }
+
+        /* Form Pages */
+        .form-content {
+            width: 100%;
+            max-width: 700px;
+            text-align: left;
+        }
+
         .page-title {
             font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 600;
-            color: #000;
-            margin-bottom: 8px;
-        }
-
-        .page-subtitle {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.7;
-        }
-
-        /* Form Content */
-        .form-content {
-            max-height: 400px;
-            overflow-y: auto;
-            padding-right: 10px;
-        }
-
-        .form-content.scrollable {
-            max-height: 500px;
-        }
-
-        .form-content::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .form-content::-webkit-scrollbar-track {
-            background: #f5f5f5;
-            border-radius: 10px;
-        }
-
-        .form-content::-webkit-scrollbar-thumb {
-            background: var(--primary-orange);
-            border-radius: 10px;
-        }
-
-        .form-content::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-orange-dark);
-        }
-
-        /* Input Sections */
-        .input-section {
-            background: #fafafa;
-            border: 1px solid #e5e5e5;
-            border-left: 3px solid var(--primary-orange);
-            border-radius: 0 8px 8px 0;
-            padding: 20px;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--white-text);
             margin-bottom: 20px;
-            transition: all 0.3s ease;
         }
 
-        .input-section:hover {
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            border-left-color: var(--primary-orange-dark);
+        .example-text {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+            line-height: 1.6;
         }
 
-        .section-header-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
-        .section-icon {
-            font-size: 20px;
-        }
-
-        .section-header-label h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            font-weight: 600;
-            color: #000;
-            margin: 0;
-        }
-
-        /* Form Groups */
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 25px;
         }
 
         .form-group label {
             display: block;
-            font-size: 11px;
+            font-size: 14px;
             font-weight: 600;
-            color: #333;
-            margin-bottom: 6px;
+            color: var(--white-text);
+            margin-bottom: 10px;
         }
 
         .form-group input[type="text"],
-        .form-group input[type="url"],
-        .form-group textarea,
-        .form-group select {
+        .form-group input[type="email"],
+        .form-group textarea {
             width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 13px;
+            padding: 15px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            font-size: 16px;
             font-family: 'Source Sans Pro', sans-serif;
             transition: all 0.3s ease;
-            background: white;
-            line-height: 1.5;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--white-text);
         }
 
         .form-group input[type="text"]:focus,
-        .form-group input[type="url"]:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
+        .form-group input[type="email"]:focus,
+        .form-group textarea:focus {
             outline: none;
-            border-color: #000;
+            border-color: var(--primary-orange);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .form-group textarea {
             resize: vertical;
-            min-height: 100px;
+            min-height: 200px;
             line-height: 1.6;
         }
 
-        .field-hint {
-            display: block;
-            font-size: 10px;
-            color: #999;
-            margin-top: 5px;
-            font-style: italic;
-            line-height: 1.4;
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
         }
 
-        /* Form Row (for side-by-side fields) */
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 20px;
         }
 
-        /* Investment Section Form */
-        .investment-section-form {
-            background: #fafafa;
-            border: 1px solid #e5e5e5;
-            border-left: 3px solid var(--primary-orange);
-            border-radius: 0 8px 8px 0;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .section-header {
-            font-family: 'Playfair Display', serif;
-            font-size: 16px;
-            font-weight: 600;
-            color: #000;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--primary-orange);
-        }
-
-        /* Submit Section */
-        .submit-section {
-            margin-top: 30px;
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #e5e5e5;
-        }
-
-        .btn-submit {
+        /* Navigation Button */
+        .nav-button {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
             background: var(--primary-orange);
             color: white;
-            padding: 15px 50px;
-            font-size: 16px;
+            padding: 18px 40px;
+            font-size: 18px;
             font-weight: 600;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Source Sans Pro', sans-serif;
-            position: relative;
-            min-width: 250px;
-            box-shadow: 0 2px 8px rgba(230, 126, 34, 0.2);
+            box-shadow: 0 4px 20px rgba(230, 126, 34, 0.4);
+            z-index: 100;
         }
 
-        .btn-submit:hover:not(:disabled) {
+        .nav-button:hover:not(:disabled) {
             background: var(--primary-orange-dark);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+            box-shadow: 0 6px 25px rgba(230, 126, 34, 0.6);
         }
 
-        .btn-submit:disabled {
-            background: #ccc;
+        .nav-button:disabled {
+            background: #666;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
-        }
-
-        .btn-loader {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .loader {
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Navigation */
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 55px;
-            background: #fafafa;
-            border-top: 1px solid #e5e5e5;
-        }
-
-        .nav-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            color: #333;
-            font-family: 'Source Sans Pro', sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        .nav-btn:hover:not(:disabled) {
-            border-color: #000;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .nav-next {
-            background: #000;
-            color: white;
-            border-color: #000;
-        }
-
-        .nav-next:hover:not(:disabled) {
-            background: #333;
-            border-color: #333;
-            color: white;
         }
 
         /* Success Modal */
@@ -484,433 +227,411 @@
         }
 
         .success-content {
-            background: white;
-            border-radius: 12px;
-            padding: 50px 40px;
-            max-width: 600px;
             text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            animation: slideUp 0.5s ease-out;
+            animation: successPop 0.5s ease-out;
         }
 
-        @keyframes slideUp {
-            from {
+        @keyframes successPop {
+            0% {
+                transform: scale(0);
                 opacity: 0;
-                transform: translateY(30px);
             }
-            to {
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
                 opacity: 1;
-                transform: translateY(0);
             }
         }
 
         .success-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--primary-orange);
+            width: 120px;
+            height: 120px;
+            background: #27ae60;
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
-            margin: 0 auto 20px;
+            font-size: 60px;
+            margin: 0 auto 30px;
             font-weight: bold;
-            box-shadow: 0 8px 20px rgba(230, 126, 34, 0.3);
-            animation: checkmark 0.8s ease-in-out;
-        }
-
-        @keyframes checkmark {
-            0%, 50% {
-                transform: scale(0);
-            }
-            70% {
-                transform: scale(1.2);
-            }
-            100% {
-                transform: scale(1);
-            }
+            box-shadow: 0 8px 30px rgba(39, 174, 96, 0.5);
         }
 
         .success-title {
             font-family: 'Playfair Display', serif;
-            font-size: 32px;
+            font-size: 42px;
             margin-bottom: 15px;
-            color: #000;
+            color: var(--white-text);
         }
 
         .success-message {
-            font-size: 16px;
+            font-size: 20px;
             line-height: 1.7;
-            color: #666;
-            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.8);
         }
 
-        .success-actions {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
+        /* Loading State */
+        .btn-loader {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .btn-close-modal {
-            background: var(--primary-orange);
-            color: white;
-            padding: 12px 30px;
-            font-size: 14px;
-            font-weight: 600;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Source Sans Pro', sans-serif;
-            box-shadow: 0 2px 8px rgba(230, 126, 34, 0.2);
+        .loader {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
         }
 
-        .btn-close-modal:hover {
-            background: var(--primary-orange-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
+            .welcome-title {
+                font-size: 42px;
             }
-            
-            .generator-header {
-                padding: 30px 25px;
-            }
-            
-            .header-title {
-                font-size: 32px;
-            }
-            
+
             .logo-image {
-                height: 70px;
+                height: 90px;
             }
-            
+
             .logo-text {
-                height: 24px;
+                height: 30px;
             }
-            
-            .progress-container {
-                padding: 15px 25px;
+
+            .page-title {
+                font-size: 36px;
             }
-            
-            .form-wrapper {
-                padding: 30px 25px;
-            }
-            
-            .navigation {
-                padding: 15px 25px;
-            }
-            
+
             .form-row {
                 grid-template-columns: 1fr;
             }
-            
-            .page-title {
-                font-size: 24px;
+
+            .nav-button {
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                width: calc(100% - 40px);
             }
-            
-            .nav-btn {
-                font-size: 12px;
-                padding: 10px 18px;
-            }
-            
-            .input-section {
-                padding: 15px;
-            }
-            
-            .section-header-label h3 {
-                font-size: 16px;
-            }
-            
-            .success-content {
-                padding: 40px 30px;
-                max-width: 90%;
-            }
-            
-            .success-title {
-                font-size: 26px;
-            }
-            
-            .success-message {
-                font-size: 14px;
+
+            .form-content {
+                padding: 0 20px;
             }
         }
 
         @media (max-width: 480px) {
-            .logo-image {
-                height: 60px;
+            .welcome-title {
+                font-size: 32px;
             }
-            
-            .logo-text {
-                height: 20px;
+
+            .page-title {
+                font-size: 28px;
             }
-            
-            .header-title {
-                font-size: 26px;
-            }
-            
-            .page-hero {
-                height: 150px;
-            }
-            
-            .form-content {
-                max-height: 350px;
-            }
-            
-            .btn-submit {
-                padding: 12px 30px;
+
+            .example-text {
                 font-size: 14px;
-                min-width: 200px;
             }
-            
-            .input-section {
-                padding: 12px;
-            }
-            
+
             .success-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 30px;
+                width: 80px;
+                height: 80px;
+                font-size: 40px;
+            }
+
+            .success-title {
+                font-size: 32px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="generator-container">
-        <!-- Header -->
-        <div class="generator-header">
+    <!-- Page 1: Welcome Screen -->
+    <div class="page-container welcome-page active" data-page="1">
+        <div class="welcome-content">
             <div class="logo-section">
                 <img src="https://github.com/level-one-ai/Proposal-System/blob/main/Whisk_cc3ea92b36cae7aaaf5425d64468a20ceg.png?raw=true" alt="Level One Logo" class="logo-image">
                 <img src="https://github.com/level-one-ai/Proposal-System/blob/main/Screenshot%202026-01-29%2020.36.28.png?raw=true" alt="Level One Text" class="logo-text">
             </div>
-            <div class="header-title">Proposal Generator</div>
-        </div>
-
-        <!-- Progress Bar -->
-        <div class="progress-container">
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            <div class="progress-text" id="progressText">Step 1 of 4</div>
-        </div>
-
-        <!-- Form Container -->
-        <div class="form-wrapper">
-            <form id="proposalForm">
-                
-                <!-- Page 1: Client Information -->
-                <div class="form-page active" data-page="1">
-                    <div class="page-hero">
-                        <img src="https://github.com/level-one-ai/Proposal-System/blob/main/processed-image.png?raw=true" alt="Hero Background" class="page-hero-image">
-                        <div class="page-hero-overlay">
-                            <h2 class="page-title">Client Information</h2>
-                            <p class="page-subtitle">Let's start with the basics about your client</p>
-                        </div>
-                    </div>
-                    
-                    <div class="form-content">
-                        <div class="form-group">
-                            <label for="companyName">Company Name *</label>
-                            <input type="text" id="companyName" name="companyName" required placeholder="Enter company name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="clientName">Client Contact Name *</label>
-                            <input type="text" id="clientName" name="clientName" required placeholder="Enter client's first name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="proposalTitlePrefix">Proposal Title Prefix *</label>
-                            <input type="text" id="proposalTitlePrefix" name="proposalTitlePrefix" required placeholder="e.g., E-Commerce Platform & Automation System for">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="proposalSubtitle">Proposal Subtitle</label>
-                            <textarea id="proposalSubtitle" name="proposalSubtitle" rows="3" placeholder="Brief description of what this proposal covers"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Page 2: Problems & Solutions -->
-                <div class="form-page" data-page="2">
-                    <h2 class="page-title">Problems & Solutions</h2>
-                    <p class="page-subtitle">Describe the client's challenges and your proposed solutions</p>
-                    
-                    <div class="form-content scrollable">
-                        <div class="input-section">
-                            <div class="section-header-label">
-                                <span class="section-icon">⚠️</span>
-                                <h3>Client Problems</h3>
-                            </div>
-                            <div class="form-group">
-                                <label for="problemsText">Describe all client challenges in detail *</label>
-                                <textarea id="problemsText" name="problemsText" rows="12" required placeholder="Describe all the problems, challenges, and pain points the client is facing. Include details about:
-- Current inefficiencies and bottlenecks
-- Manual processes that need automation
-- Security or compliance concerns
-- Missed opportunities for growth
-- Customer experience issues
-- Any other relevant challenges
-
-The AI will analyze this and break it down into distinct problem sections for the proposal."></textarea>
-                                <span class="field-hint">Be comprehensive - the AI will extract key problems and create compelling descriptions</span>
-                            </div>
-                        </div>
-
-                        <div class="input-section">
-                            <div class="section-header-label">
-                                <span class="section-icon">✨</span>
-                                <h3>Proposed Solutions</h3>
-                            </div>
-                            <div class="form-group">
-                                <label for="solutionsText">Describe your complete solution approach *</label>
-                                <textarea id="solutionsText" name="solutionsText" rows="12" required placeholder="Describe all the solutions, systems, and capabilities you'll deliver. Include:
-- Core platform or system features
-- AI-powered automation components
-- Integration capabilities
-- Custom development work
-- Support and maintenance features
-- Any other deliverables
-
-The AI will organize this into distinct solution components with detailed descriptions."></textarea>
-                                <span class="field-hint">Include all technical and business solutions - the AI will structure them professionally</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Page 3: Investment Details -->
-                <div class="form-page" data-page="3">
-                    <h2 class="page-title">Investment Breakdown</h2>
-                    <p class="page-subtitle">Define the pricing structure</p>
-                    
-                    <div class="form-content scrollable">
-                        <div class="investment-section-form">
-                            <h3 class="section-header">Deposit</h3>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="depositPercentage">Percentage *</label>
-                                    <input type="text" id="depositPercentage" name="depositPercentage" required placeholder="e.g., 50%">
-                                </div>
-                                <div class="form-group">
-                                    <label for="depositAmount">Amount *</label>
-                                    <input type="text" id="depositAmount" name="depositAmount" required placeholder="e.g., £9,370">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="depositContext">What the deposit covers (context for AI) *</label>
-                                <textarea id="depositContext" name="depositContext" rows="3" required placeholder="Describe what milestones/work the deposit covers. AI will generate bullet points."></textarea>
-                            </div>
-                        </div>
-
-                        <div class="investment-section-form">
-                            <h3 class="section-header">Remaining Balance</h3>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="remainingPercentage">Percentage *</label>
-                                    <input type="text" id="remainingPercentage" name="remainingPercentage" required placeholder="e.g., 50%">
-                                </div>
-                                <div class="form-group">
-                                    <label for="remainingAmount">Amount *</label>
-                                    <input type="text" id="remainingAmount" name="remainingAmount" required placeholder="e.g., £9,370">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="remainingContext">What the remaining balance covers (context for AI) *</label>
-                                <textarea id="remainingContext" name="remainingContext" rows="3" required placeholder="Describe what milestones/work the remaining payments cover. AI will generate bullet points."></textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="projectTotal">Project Total *</label>
-                            <input type="text" id="projectTotal" name="projectTotal" required placeholder="e.g., £18,740">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="paymentStructureContext">Payment Structure Notes</label>
-                            <textarea id="paymentStructureContext" name="paymentStructureContext" rows="2" placeholder="Any specific notes about how payments work (AI will write professional description)"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Page 4: Configuration -->
-                <div class="form-page" data-page="4">
-                    <h2 class="page-title">Configuration</h2>
-                    <p class="page-subtitle">Final settings before generation</p>
-                    
-                    <div class="form-content">
-                        <div class="form-group">
-                            <label for="webhookUrl">Make.com Webhook URL *</label>
-                            <input type="url" id="webhookUrl" name="webhookUrl" required placeholder="https://hook.us1.make.com/...">
-                            <span class="field-hint">This is where the form data will be sent for AI processing</span>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="platform1Name">Platform Fee 1 Name</label>
-                            <input type="text" id="platform1Name" name="platform1Name" placeholder="e.g., Make.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="platform1Price">Platform Fee 1 Price</label>
-                            <input type="text" id="platform1Price" name="platform1Price" placeholder="e.g., £25/mo">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="platform2Name">Platform Fee 2 Name</label>
-                            <input type="text" id="platform2Name" name="platform2Name" placeholder="e.g., AI API Usage (est.)">
-                        </div>
-                        <div class="form-group">
-                            <label for="platform2Price">Platform Fee 2 Price</label>
-                            <input type="text" id="platform2Price" name="platform2Price" placeholder="e.g., £50-150/mo">
-                        </div>
-
-                        <div class="submit-section">
-                            <button type="submit" class="btn-submit" id="submitBtn">
-                                <span class="btn-text">Generate Proposal</span>
-                                <span class="btn-loader" style="display: none;">
-                                    <span class="loader"></span> Processing...
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </form>
-        </div>
-
-        <!-- Navigation -->
-        <div class="navigation">
-            <button type="button" class="nav-btn nav-prev" id="prevBtn" disabled>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Previous
-            </button>
-            <button type="button" class="nav-btn nav-next" id="nextBtn">
-                Next
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
+            <h1 class="welcome-title">Create Your Proposal</h1>
         </div>
     </div>
+
+    <!-- Page 2: Client Information -->
+    <div class="page-container" data-page="2">
+        <div class="form-content">
+            <h2 class="page-title">Client Information</h2>
+            <p class="example-text">Let's start with the basics about your client.</p>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" placeholder="John" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" placeholder="Smith" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="companyName">Company Name</label>
+                <input type="text" id="companyName" placeholder="Acme Corporation" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="john.smith@acme.com" required>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: The Problem -->
+    <div class="page-container" data-page="3">
+        <div class="form-content">
+            <h2 class="page-title">The Current Problem?</h2>
+            <p class="example-text">Example: "Our e-commerce platform is struggling with manual content creation that takes hours per product listing. We're losing revenue to fraud - last month alone we had £15,000 in chargebacks. Our support team is overwhelmed with 500+ tickets per week, mostly repetitive questions. We're also missing personalization opportunities - we have customer data but can't act on it in real-time to boost conversions."</p>
+            
+            <div class="form-group">
+                <textarea id="problemText" placeholder="Describe all the problems, challenges, and pain points the client is facing..." required></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 4: The Solution -->
+    <div class="page-container" data-page="4">
+        <div class="form-content">
+            <h2 class="page-title">What Is The Solution?</h2>
+            <p class="example-text">Example: "We'll build a custom e-commerce platform with headless architecture for flexibility. An AI content engine will auto-generate product descriptions, SEO metadata, and marketing copy. Intelligent fraud prevention using ML will analyze transactions in real-time. A 24/7 AI support agent will handle common questions and escalate complex issues. Predictive personalization will customize the experience based on browsing behavior."</p>
+            
+            <div class="form-group">
+                <textarea id="solutionText" placeholder="Describe your complete solution approach and all deliverables..." required></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 5: Cost -->
+    <div class="page-container" data-page="5">
+        <div class="form-content">
+            <h2 class="page-title">Cost</h2>
+            <p class="example-text">What is the investment for this project?</p>
+            
+            <div class="form-group">
+                <label for="fullAmount">Full Project Amount</label>
+                <input type="text" id="fullAmount" placeholder="£18,740" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="monthlyRecurring">Monthly Recurring Platform Fees</label>
+                <input type="text" id="monthlyRecurring" placeholder="£75-175/month (Make.com, AI API, etc)" required>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 6: Timeline -->
+    <div class="page-container" data-page="6">
+        <div class="form-content">
+            <h2 class="page-title">Timeline</h2>
+            <p class="example-text">How long will this project take from start to finish?</p>
+            
+            <div class="form-group">
+                <label for="timeline">Project Duration</label>
+                <input type="text" id="timeline" placeholder="8-12 weeks" required>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Button -->
+    <button class="nav-button" id="navButton">Get Started</button>
 
     <!-- Success Modal -->
     <div class="success-modal" id="successModal">
         <div class="success-content">
             <div class="success-icon">✓</div>
-            <h2 class="success-title">Proposal Generated!</h2>
-            <p class="success-message">Your proposal has been sent to Make.com for AI processing. You'll receive the completed proposal link via email shortly.</p>
-            <div class="success-actions">
-                <button class="btn-close-modal" onclick="closeSuccessModal()">Create Another Proposal</button>
-            </div>
+            <h2 class="success-title">Thank You!</h2>
+            <p class="success-message">Your proposal is being generated.</p>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        let currentPage = 1;
+        const totalPages = 6;
+        const webhookUrl = 'https://hook.eu1.make.com/zwyqjvu4bxl35h3prmsd3milfci7dmps';
+
+        const navButton = document.getElementById('navButton');
+        const pages = document.querySelectorAll('.page-container');
+
+        // Button text for each page
+        const buttonTexts = [
+            'Get Started',
+            'Next',
+            'Next',
+            'Next',
+            'Next',
+            'Submit'
+        ];
+
+        function updatePage() {
+            // Hide all pages
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show current page
+            const currentPageElement = document.querySelector(`[data-page="${currentPage}"]`);
+            if (currentPageElement) {
+                currentPageElement.classList.add('active');
+            }
+            
+            // Update button text
+            navButton.textContent = buttonTexts[currentPage - 1];
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function validateCurrentPage() {
+            const currentPageElement = document.querySelector(`[data-page="${currentPage}"]`);
+            
+            if (currentPage === 1) {
+                return true; // Welcome page has no validation
+            }
+            
+            const inputs = currentPageElement.querySelectorAll('input[required], textarea[required]');
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = '#e74c3c';
+                    
+                    // Reset border color on input
+                    input.addEventListener('input', function() {
+                        this.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    }, { once: true });
+                }
+            });
+            
+            if (!isValid) {
+                alert('Please fill in all required fields before continuing.');
+            }
+            
+            return isValid;
+        }
+
+        function collectFormData() {
+            return {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                companyName: document.getElementById('companyName').value,
+                email: document.getElementById('email').value,
+                problemText: document.getElementById('problemText').value,
+                solutionText: document.getElementById('solutionText').value,
+                fullAmount: document.getElementById('fullAmount').value,
+                monthlyRecurring: document.getElementById('monthlyRecurring').value,
+                timeline: document.getElementById('timeline').value
+            };
+        }
+
+        async function submitForm() {
+            const formData = collectFormData();
+            
+            // Show loading state
+            navButton.innerHTML = '<span class="btn-loader"><span class="loader"></span> Submitting...</span>';
+            navButton.disabled = true;
+            
+            try {
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                if (response.ok) {
+                    showSuccessModal();
+                } else {
+                    throw new Error('Submission failed');
+                }
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('There was an error submitting your proposal. Please try again.');
+                
+                // Reset button
+                navButton.innerHTML = 'Submit';
+                navButton.disabled = false;
+            }
+        }
+
+        function showSuccessModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.add('active');
+            
+            // Hide modal after 3 seconds and reset form
+            setTimeout(() => {
+                modal.classList.remove('active');
+                resetForm();
+            }, 3000);
+        }
+
+        function resetForm() {
+            // Reset all inputs
+            document.getElementById('firstName').value = '';
+            document.getElementById('lastName').value = '';
+            document.getElementById('companyName').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('problemText').value = '';
+            document.getElementById('solutionText').value = '';
+            document.getElementById('fullAmount').value = '';
+            document.getElementById('monthlyRecurring').value = '';
+            document.getElementById('timeline').value = '';
+            
+            // Reset to first page
+            currentPage = 1;
+            updatePage();
+            
+            // Reset button
+            navButton.disabled = false;
+            navButton.innerHTML = 'Get Started';
+        }
+
+        // Navigation button click handler
+        navButton.addEventListener('click', () => {
+            if (!validateCurrentPage()) {
+                return;
+            }
+            
+            if (currentPage < totalPages) {
+                currentPage++;
+                updatePage();
+            } else {
+                // Last page - submit form
+                submitForm();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                return;
+            }
+            
+            if (e.key === 'Enter' && currentPage === 1) {
+                navButton.click();
+            }
+        });
+
+        // Initialize
+        updatePage();
+    </script>
 </body>
 </html>
