@@ -74,6 +74,7 @@
             z-index: 2;
             text-align: center;
             max-width: 800px;
+            width: 100%;
         }
 
         .logo-section {
@@ -108,6 +109,12 @@
             width: 100%;
             max-width: 700px;
             text-align: left;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 48px 52px 52px;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.4), 0 8px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.06);
+            margin-bottom: 100px;
         }
 
         .page-title {
@@ -179,33 +186,46 @@
         /* Navigation Button */
         .nav-button {
             position: fixed;
-            bottom: 40px;
-            left: 40px;
-            background: var(--primary-orange);
-            color: white;
-            padding: 18px 40px;
-            font-size: 18px;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4a4a4a;
+            background: linear-gradient(180deg, #5a5a5a 0%, #3d3d3d 50%, #333333 100%);
+            color: rgba(255, 255, 255, 0.88);
+            padding: 12px 32px;
+            font-size: 15px;
             font-weight: 600;
-            border: none;
-            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+            border-radius: 7px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
             font-family: 'Source Sans Pro', sans-serif;
-            box-shadow: 0 4px 20px rgba(230, 126, 34, 0.4);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+            letter-spacing: 0.03em;
             z-index: 100;
+            white-space: nowrap;
         }
 
         .nav-button:hover:not(:disabled) {
-            background: var(--primary-orange-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(230, 126, 34, 0.6);
+            background: linear-gradient(180deg, #636363 0%, #484848 50%, #3d3d3d 100%);
+            color: rgba(255, 255, 255, 0.96);
+            border-color: rgba(230, 126, 34, 0.7);
+            box-shadow: 0 0 0 1px rgba(230, 126, 34, 0.3), 0 0 14px rgba(230, 126, 34, 0.55), 0 0 28px rgba(230, 126, 34, 0.2), inset 0 1px 0 rgba(255,255,255,0.12);
+        }
+
+        .nav-button:active:not(:disabled) {
+            background: linear-gradient(180deg, #303030 0%, #3a3a3a 100%);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), inset 0 1px 3px rgba(0,0,0,0.3);
+            transform: translateX(-50%) translateY(1px);
         }
 
         .nav-button:disabled {
-            background: #666;
+            background: #2e2e2e;
+            color: rgba(255, 255, 255, 0.3);
             cursor: not-allowed;
-            transform: none;
             box-shadow: none;
+            border-color: rgba(255, 255, 255, 0.05);
         }
 
         /* Success Modal */
@@ -271,6 +291,21 @@
             font-size: 20px;
             line-height: 1.7;
             color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 12px;
+        }
+
+        .success-id {
+            font-size: 15px;
+            color: var(--primary-orange);
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            background: rgba(230, 126, 34, 0.1);
+            border: 1px solid rgba(230, 126, 34, 0.3);
+            border-radius: 6px;
+            padding: 8px 20px;
+            display: inline-block;
+            margin-top: 4px;
         }
 
         /* Loading State */
@@ -319,9 +354,15 @@
 
             .nav-button {
                 bottom: 20px;
-                left: 20px;
-                right: 20px;
-                width: calc(100% - 40px);
+                left: 50%;
+                right: auto;
+                width: auto;
+                padding: 11px 28px;
+            }
+
+            .form-content {
+                padding: 32px 24px 36px;
+                margin-bottom: 90px;
             }
 
             .form-content {
@@ -359,7 +400,7 @@
     <div class="page-container welcome-page active" data-page="1">
         <div class="welcome-content">
             <div class="logo-section">
-                <img src="https://github.com/level-one-ai/Proposal-System/blob/main/Whisk_cc3ea92b36cae7aaaf5425d64468a20ceg.png?raw=true" alt="Level One Logo" class="logo-image">
+                <img src="https://github.com/level-one-ai/Proposal-System/blob/main/level-one-logo.png?raw=true" alt="Level One Logo" class="logo-image">
                 <img src="https://github.com/level-one-ai/Proposal-System/blob/main/Screenshot%202026-01-29%2020.36.28.png?raw=true" alt="Level One Text" class="logo-text">
             </div>
             <h1 class="welcome-title">Create Your Proposal</h1>
@@ -459,6 +500,7 @@
             <div class="success-icon">✓</div>
             <h2 class="success-title">Thank You!</h2>
             <p class="success-message">Your proposal is being generated.</p>
+            <p class="success-id" id="proposalIdDisplay"></p>
         </div>
     </div>
 
@@ -479,6 +521,13 @@
             'Next',
             'Submit'
         ];
+
+        // Generate proposal ID: firstname-XXXXX (5 random digits)
+        function generateProposalId(firstName) {
+            const cleanName = firstName.trim().toLowerCase().replace(/\s+/g, '');
+            const randomDigits = Math.floor(10000 + Math.random() * 90000); // always 5 digits
+            return `${cleanName}-${randomDigits}`;
+        }
 
         function updatePage() {
             // Hide all pages
@@ -527,8 +576,12 @@
         }
 
         function collectFormData() {
+            const firstName = document.getElementById('firstName').value;
+            const proposalId = generateProposalId(firstName);
+
             return {
-                firstName: document.getElementById('firstName').value,
+                proposalId: proposalId,
+                firstName: firstName,
                 lastName: document.getElementById('lastName').value,
                 companyName: document.getElementById('companyName').value,
                 email: document.getElementById('email').value,
@@ -536,7 +589,8 @@
                 solutionText: document.getElementById('solutionText').value,
                 fullAmount: document.getElementById('fullAmount').value,
                 monthlyRecurring: document.getElementById('monthlyRecurring').value,
-                timeline: document.getElementById('timeline').value
+                timeline: document.getElementById('timeline').value,
+                formFilled: true
             };
         }
 
@@ -557,7 +611,7 @@
                 });
                 
                 if (response.ok) {
-                    showSuccessModal();
+                    showSuccessModal(formData.proposalId);
                 } else {
                     throw new Error('Submission failed');
                 }
@@ -572,15 +626,16 @@
             }
         }
 
-        function showSuccessModal() {
+        function showSuccessModal(proposalId) {
             const modal = document.getElementById('successModal');
+            document.getElementById('proposalIdDisplay').textContent = `Proposal ID: ${proposalId}`;
             modal.classList.add('active');
             
-            // Hide modal after 3 seconds and reset form
+            // Hide modal after 4 seconds and reset form
             setTimeout(() => {
                 modal.classList.remove('active');
                 resetForm();
-            }, 3000);
+            }, 4000);
         }
 
         function resetForm() {
